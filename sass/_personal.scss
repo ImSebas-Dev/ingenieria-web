@@ -1,0 +1,106 @@
+@use './variables';
+
+.info-section {
+    padding-top: 8rem;
+    padding-bottom: 6rem;
+    position: relative;
+    overflow: hidden;
+
+    .div-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 3rem;
+        position: relative;
+    }
+
+    .div-image {
+        width: 220px;
+        height: 220px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 4px solid transparent;
+        background: variables.$gradient-purple border-box;
+        box-shadow: 0 0 30px rgba(110, 69, 226, 0.5);
+        transition: variables.$transition;
+    }
+
+    .div-image:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 50px rgba(110, 69, 226, 0.7);
+    }
+
+    .div-text {
+        text-align: center;
+        max-width: 700px;
+    }
+
+    h1 {
+        font-size: 3.5rem;
+        margin-bottom: 1rem;
+        line-height: 1.1;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+        font-weight: 400;
+        margin-bottom: 2rem;
+        color: variables.$light-color;
+    }
+
+    .contact-info {
+        margin: 1.5rem 0;
+    }
+
+    .contact-info p {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 0.5rem;
+        color: variables.$text-color;
+        font-size: 1.1rem;
+    }
+
+    .icon {
+        font-size: 1.3rem;
+    }
+
+    .social-links {
+        display: flex;
+        gap: 1.5rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 2rem;
+    }
+
+    .social-links a {
+        color: white;
+        padding: 0.8rem 1.8rem;
+        border-radius: variables.$border-radius;
+        position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(5px);
+        transition: variables.$transition;
+    }
+
+    .social-links a:hover {
+        background: rgba(171, 136, 211, 0.2);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        border-color: variables.$secondary-color;
+
+    }
+}
+
+.info-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, rgba(110, 69, 226, 0.1) 0%, transparent 70%);
+    z-index: -1;
+}
