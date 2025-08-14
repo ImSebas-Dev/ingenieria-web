@@ -1,120 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV - Profesional</title>
+    <title>Actividades - Ingeniería Web</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
 </head>
+
 <body>
-    <main class="main-content">
-        <!-- Info Personal -->
-        <section id="contacto" class="info-section">
-            <div class="container">
-                <div class="div-content">
-                    <div class="div-image">
-                        <img src="ted.webp" alt="Foto de perfil" width="300" height="300" class="profile-pic">
-                    </div>
-                    <div class="div-text">
-                        <h1>Sebastián López</h1>
-                        <div class="contact-info">
-                            <p><span class="icon">📧</span> lopezsebastian.dev@gmail.com</p>
-                            <p><span class="icon">📱</span> +57 3114968631</p>
-                            <p><span class="icon">📍</span> Bogotá, Colombia</p>
+    <section class="content-section-index">
+        <header  class="container-header">
+            <div>
+                <nav>
+                    <ul>
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#actividades">Actividades</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <main class="container-main">
+            <div class="container-content">
+                <h1>Actividades</h1>
+                <p>En esta sección se presentan las actividades realizadas durante el curso de Ingeniería Web.</p>
+
+                <div class="container-activities">
+                    <div class="activity">
+                        <a href="/views/cv.html">Ver Curriculum Vitae</a>
+                        <div class="cover">
+                            <p>Curriculum Vitae</p>
                         </div>
-                        <div class="social-links">
-                            <a href="https://www.linkedin.com/in/sebastian-lopez-a168a3279/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                            <a href="https://github.com/ImSebas-Dev" target="_blank" rel="noopener noreferrer">GitHub</a>
-                        </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </main>
 
-        <!-- Perfil Profesional-->
-        <section id="perfil" class="profile-section">
-            <div class="container">
-                <h2 class="section-title">Perfil Profesional</h2>
-                <div class="section-content">
-                    <p>Ingeniero de desarrollo con 5+ años de experiencia en diseño e implementación de soluciones software escalables. Especializado en arquitecturas cloud y desarrollo full-stack con enfoque en calidad y buenas prácticas.</p>
-                    <p>Apasionado por la innovación tecnológica y el trabajo en equipo. Busco contribuir con mis habilidades técnicas y blandas en proyectos desafiantes que generen impacto positivo.</p>
-                </div>
+        <footer class="container-footer">
+            <div>
+                <p>&copy; 2025 Sebastián López. Todos los derechos reservados.</p>
             </div>
-        </section>
-
-        <!-- Skills -->
-        <section id="tecnicas" class="skills-section">
-            <div class="container">
-                <h2 class="section-title">Competencias Técnicas</h2>
-                <div class="skills-grid">
-                    <div class="skill-category">
-                        <h3>Lenguajes de Programación</h3>
-                        <ul>
-                            <li>JavaScript (ES6+)</li>
-                            <li>TypeScript</li>
-                            <li>Python</li>
-                            <li>Java</li>
-                        </ul>
-                    </div>
-                    <div class="skill-category">
-                        <h3>Frontend</h3>
-                        <ul>
-                            <li>React.js</li>
-                            <li>Vue.js</li>
-                            <li>HTML5 & CSS3</li>
-                            <li>Sass/Less</li>
-                        </ul>
-                    </div>
-                    <div class="skill-category">
-                        <h3>Backend</h3>
-                        <ul>
-                            <li>Node.js</li>
-                            <li>Express</li>
-                            <li>Django</li>
-                            <li>Spring Boot</li>
-                        </ul>
-                    </div>
-                    <div class="skill-category">
-                        <h3>DevOps & Cloud</h3>
-                        <ul>
-                            <li>AWS</li>
-                            <li>Docker</li>
-                            <li>Kubernetes</li>
-                            <li>CI/CD</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Skills Blandas -->
-        <section id="blandas" class="soft-skills-section">
-            <div class="container">
-                <h2 class="section-title">Competencias Blandas</h2>
-                <div class="soft-skills-list">
-                    <div class="soft-skill">
-                        <h3>Trabajo en Equipo</h3>
-                        <p>Experiencia liderando equipos multidisciplinarios y colaborando eficientemente en entornos Agile.</p>
-                    </div>
-                    <div class="soft-skill">
-                        <h3>Comunicación Efectiva</h3>
-                        <p>Capacidad para explicar conceptos técnicos a audiencias no técnicas y documentar procesos claramente.</p>
-                    </div>
-                    <div class="soft-skill">
-                        <h3>Resolución de Problemas</h3>
-                        <p>Enfoque analítico para identificar problemas y diseñar soluciones óptimas.</p>
-                    </div>
-                    <div class="soft-skill">
-                        <h3>Gestión del Tiempo</h3>
-                        <p>Priorización efectiva de tareas para cumplir con plazos en entornos de alta demanda.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
+        </footer>
+    </section>
 </body>
+
 </html>

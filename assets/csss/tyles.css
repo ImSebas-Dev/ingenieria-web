@@ -227,19 +227,19 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  line-height: 1.6;
+  color: #e6e6e6;
+  background-color: #25163e;
+  overflow-x: hidden;
+  background: radial-gradient(circle at top left, #211a2e 0%, #27163e 70%);
 }
 
 html {
   scroll-behavior: smooth;
-}
-
-body {
-  font-family: "Poppins", sans-serif;
-  line-height: 1.7;
-  color: #e6e6e6;
-  background-color: #221a2e;
-  overflow-x: hidden;
-  background: radial-gradient(circle at top left, #211a2e 0%, #27163e 70%);
 }
 
 /* Responsive Design */
@@ -407,4 +407,4 @@ body {
   animation-delay: 0.7s;
 }
 
-/*# sourceMappingURL=styles.css.map */
+/*# sourceMappingURL=tyles.css.map */

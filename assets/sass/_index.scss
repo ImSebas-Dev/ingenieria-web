@@ -1,0 +1,139 @@
+@use "./variables";
+
+.content-section-index {
+    display: grid;
+    min-height: 100dvh;
+    grid-template-rows: auto 1fr auto;
+    background-color: variables.$bg-color;
+
+    .container-header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 5rem;
+        background-color: variables.$dark-color;
+
+        nav {
+            ul {
+                display: flex;
+                list-style: none;
+                gap: 1.5rem;
+
+                a{
+                    text-decoration: none;
+                    color: variables.$text-color;
+                }
+
+                a:hover {
+                    color: variables.$primary-color;
+                }
+            }
+        }
+    }
+
+    .container-main {
+        flex: 1;
+        display: flex;
+
+        .container-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            margin: 1.5rem;
+
+            .container-activities {
+                flex: 1;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                margin: 1.5rem;
+
+                .activity {
+                    position: relative;
+                    border-radius: 10px;
+                    width: 220px;
+                    height: 300px;
+                    background-color: whitesmoke;
+                    -webkit-box-shadow: 1px 1px 12px #000;
+                    box-shadow: 1px 1px 12px #000;
+                    -webkit-transform: preserve-3d;
+                    -ms-transform: preserve-3d;
+                    transform: preserve-3d;
+                    -webkit-perspective: 2000px;
+                    perspective: 2000px;
+                    display: -webkit-box;
+                    display: -ms-flexbox;
+                    display: flex;
+                    -webkit-box-align: center;
+                    -ms-flex-align: center;
+                    align-items: center;
+                    -webkit-box-pack: center;
+                    -ms-flex-pack: center;
+                    justify-content: center;
+                    color: #000;
+                }
+
+                .cover {
+                    top: 0;
+                    position: absolute;
+                    background-color: variables.$primary-color;
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 10px;
+                    cursor: pointer;
+                    -webkit-transition: all 0.5s;
+                    transition: all 0.5s;
+                    -webkit-transform-origin: 0;
+                    -ms-transform-origin: 0;
+                    transform-origin: 0;
+                    -webkit-box-shadow: 1px 1px 12px #000;
+                    box-shadow: 1px 1px 12px #000;
+                    display: -webkit-box;
+                    display: -ms-flexbox;
+                    display: flex;
+                    -webkit-box-align: center;
+                    -ms-flex-align: center;
+                    align-items: center;
+                    -webkit-box-pack: center;
+                    -ms-flex-pack: center;
+                    justify-content: center;
+                }
+
+                .activity:hover .cover {
+                    -webkit-transition: all 0.5s;
+                    transition: all 0.5s;
+                    -webkit-transform: rotatey(-80deg);
+                    -ms-transform: rotatey(-80deg);
+                    transform: rotatey(-80deg);
+                }
+
+                p {
+                    font-size: 20px;
+                    font-weight: bolder;
+                }
+
+                a {
+                    font-size: 20px;
+                    font-weight: bolder;
+                    text-decoration: none;
+                    color: #000;
+
+                    &:hover {
+                        color: variables.$primary-color;
+                    }
+                }
+            }
+        }
+    }
+
+    .container-footer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 5rem;
+        background-color: variables.$dark-color;
+    }
+}
