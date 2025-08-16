@@ -1,121 +1,279 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV - Profesional</title>
+    <title>Sebastián López - CV Profesional</title>
+    <meta name="description"
+        content="CV profesional de Sebastián López, Ingeniero de desarrollo con 5+ años de experiencia">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="/assets/css/styles.css">
-
 </head>
+
 <body>
-    <main class="main-content">
-        <!-- Info Personal -->
-        <section id="contacto" class="info-section">
-            <div class="container">
-                <div class="div-content">
-                    <div class="div-image">
-                        <img src="/assets/img/ted.webp" alt="Foto de perfil" width="300" height="300" class="profile-pic">
-                    </div>
-                    <div class="div-text">
-                        <h1>Sebastián López</h1>
-                        <div class="contact-info">
-                            <p><span class="icon">📧</span> lopezsebastian.dev@gmail.com</p>
-                            <p><span class="icon">📱</span> +57 3114968631</p>
-                            <p><span class="icon">📍</span> Bogotá, Colombia</p>
-                        </div>
-                        <div class="social-links">
-                            <a href="https://www.linkedin.com/in/sebastian-lopez-a168a3279/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                            <a href="https://github.com/ImSebas-Dev" target="_blank" rel="noopener noreferrer">GitHub</a>
-                        </div>
+    <div class="cv-container">
+        <!-- Sidebar con información personal -->
+        <aside class="cv-sidebar">
+            <div class="profile-card">
+                <div class="profile-image-container">
+                    <img src="/assets/img/ted.webp" alt="Foto de perfil de Sebastián López" class="profile-image">
+                    <div class="image-border"></div>
+                </div>
+                <h1 class="profile-name">Sebastián López</h1>
+                <p class="profile-title">Ingeniero de Desarrollo</p>
+
+                <div class="contact-info">
+                    <h2 class="sidebar-title">Contacto</h2>
+                    <ul>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>lopezsebastian.dev@gmail.com</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone-alt"></i>
+                            <span>+57 3114968631</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Bogotá, Colombia</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="social-links">
+                    <h2 class="sidebar-title">Redes</h2>
+                    <div class="social-icons">
+                        <a href="https://www.linkedin.com/in/sebastian-lopez-a168a3279/" target="_blank"
+                            rel="noopener noreferrer" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://github.com/ImSebas-Dev" target="_blank" rel="noopener noreferrer"
+                            aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" aria-label="Portafolio">
+                            <i class="fas fa-briefcase"></i>
+                        </a>
                     </div>
                 </div>
-            </div>
-        </section>
 
-        <!-- Perfil Profesional-->
-        <section id="perfil" class="profile-section">
-            <div class="container">
-                <h2 class="section-title">Perfil Profesional</h2>
+                <div class="back-button">
+                    <a href="/index.html" class="back-btn">
+                        <i class="fas fa-arrow-left"></i> Volver
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Contenido principal -->
+        <main class="cv-main-content">
+            <!-- Sección de perfil -->
+            <section class="cv-section profile-section">
+                <h2 class="section-title">
+                    <i class="fas fa-user-tie section-icon"></i>
+                    Perfil Profesional
+                </h2>
                 <div class="section-content">
-                    <p>Ingeniero de desarrollo con 5+ años de experiencia en diseño e implementación de soluciones software escalables. Especializado en arquitecturas cloud y desarrollo full-stack con enfoque en calidad y buenas prácticas.</p>
-                    <p>Apasionado por la innovación tecnológica y el trabajo en equipo. Busco contribuir con mis habilidades técnicas y blandas en proyectos desafiantes que generen impacto positivo.</p>
+                    <p>Ingeniero de desarrollo con 5+ años de experiencia en diseño e implementación de soluciones
+                        software escalables. Especializado en arquitecturas cloud y desarrollo full-stack con enfoque en
+                        calidad y buenas prácticas.</p>
+                    <p>Apasionado por la innovación tecnológica y el trabajo en equipo. Busco contribuir con mis
+                        habilidades técnicas y blandas en proyectos desafiantes que generen impacto positivo.</p>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Skills -->
-        <section id="tecnicas" class="skills-section">
-            <div class="container">
-                <h2 class="section-title">Competencias Técnicas</h2>
+            <!-- Sección de habilidades técnicas -->
+            <section class="cv-section skills-section">
+                <h2 class="section-title">
+                    <i class="fas fa-code section-icon"></i>
+                    Competencias Técnicas
+                </h2>
                 <div class="skills-grid">
                     <div class="skill-category">
-                        <h3>Lenguajes de Programación</h3>
-                        <ul>
-                            <li>JavaScript (ES6+)</li>
-                            <li>TypeScript</li>
-                            <li>Python</li>
-                            <li>Java</li>
+                        <div class="skill-header">
+                            <i class="fas fa-laptop-code skill-icon"></i>
+                            <h3>Lenguajes de Programación</h3>
+                        </div>
+                        <ul class="skill-items">
+                            <li>
+                                <span class="skill-name">JavaScript (ES6+)</span>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 90%"></div>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="skill-name">TypeScript</span>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 85%"></div>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="skill-name">Python</span>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 80%"></div>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="skill-name">Java</span>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 75%"></div>
+                                </div>
+                            </li>
                         </ul>
                     </div>
+
                     <div class="skill-category">
-                        <h3>Frontend</h3>
-                        <ul>
-                            <li>React.js</li>
-                            <li>Vue.js</li>
-                            <li>HTML5 & CSS3</li>
-                            <li>Sass/Less</li>
+                        <div class="skill-header">
+                            <i class="fas fa-paint-brush skill-icon"></i>
+                            <h3>Frontend</h3>
+                        </div>
+                        <ul class="skill-items">
+                            <li>
+                                <span class="skill-name">React.js</span>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 95%"></div>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="skill-name">Vue.js</span>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 85%"></div>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="skill-name">HTML5 & CSS3</span>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 90%"></div>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="skill-name">Sass/Less</span>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 85%"></div>
+                                </div>
+                            </li>
                         </ul>
                     </div>
+
                     <div class="skill-category">
-                        <h3>Backend</h3>
-                        <ul>
-                            <li>Node.js</li>
-                            <li>Express</li>
-                            <li>Django</li>
-                            <li>Spring Boot</li>
+                        <div class="skill-header">
+                            <i class="fas fa-server skill-icon"></i>
+                            <h3>Backend</h3>
+                        </div>
+                        <ul class="skill-items">
+                            <li>
+                                <span class="skill-name">Node.js</span>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 90%"></div>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="skill-name">Express</span>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 88%"></div>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="skill-name">Django</span>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 80%"></div>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="skill-name">Spring Boot</span>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 70%"></div>
+                                </div>
+                            </li>
                         </ul>
                     </div>
+
                     <div class="skill-category">
-                        <h3>DevOps & Cloud</h3>
-                        <ul>
-                            <li>AWS</li>
-                            <li>Docker</li>
-                            <li>Kubernetes</li>
-                            <li>CI/CD</li>
+                        <div class="skill-header">
+                            <i class="fas fa-cloud skill-icon"></i>
+                            <h3>DevOps & Cloud</h3>
+                        </div>
+                        <ul class="skill-items">
+                            <li>
+                                <span class="skill-name">AWS</span>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 85%"></div>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="skill-name">Docker</span>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 90%"></div>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="skill-name">Kubernetes</span>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 80%"></div>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="skill-name">CI/CD</span>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 85%"></div>
+                                </div>
+                            </li>
                         </ul>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Skills Blandas -->
-        <section id="blandas" class="soft-skills-section">
-            <div class="container">
-                <h2 class="section-title">Competencias Blandas</h2>
-                <div class="soft-skills-list">
-                    <div class="soft-skill">
+            <!-- Sección de habilidades blandas -->
+            <section class="cv-section soft-skills-section">
+                <h2 class="section-title">
+                    <i class="fas fa-brain section-icon"></i>
+                    Competencias Blandas
+                </h2>
+                <div class="soft-skills-grid">
+                    <div class="soft-skill-card">
+                        <div class="soft-skill-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
                         <h3>Trabajo en Equipo</h3>
-                        <p>Experiencia liderando equipos multidisciplinarios y colaborando eficientemente en entornos Agile.</p>
+                        <p>Experiencia liderando equipos multidisciplinarios y colaborando eficientemente en entornos
+                            Agile.</p>
                     </div>
-                    <div class="soft-skill">
+
+                    <div class="soft-skill-card">
+                        <div class="soft-skill-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
                         <h3>Comunicación Efectiva</h3>
-                        <p>Capacidad para explicar conceptos técnicos a audiencias no técnicas y documentar procesos claramente.</p>
+                        <p>Capacidad para explicar conceptos técnicos a audiencias no técnicas y documentar procesos
+                            claramente.</p>
                     </div>
-                    <div class="soft-skill">
+
+                    <div class="soft-skill-card">
+                        <div class="soft-skill-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
                         <h3>Resolución de Problemas</h3>
                         <p>Enfoque analítico para identificar problemas y diseñar soluciones óptimas.</p>
                     </div>
-                    <div class="soft-skill">
+
+                    <div class="soft-skill-card">
+                        <div class="soft-skill-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
                         <h3>Gestión del Tiempo</h3>
                         <p>Priorización efectiva de tareas para cumplir con plazos en entornos de alta demanda.</p>
                     </div>
                 </div>
-            </div>
-        </section>
-    </main>
+            </section>
+        </main>
+    </div>
+
+    <script src="/assets/js/cv-script.js"></script>
 </body>
+
 </html>

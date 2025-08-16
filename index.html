@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Actividades - Ingeniería Web</title>
+    <meta name="description" content="Actividades del curso de Ingeniería Web">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
@@ -14,41 +15,97 @@
 </head>
 
 <body>
-    <section class="content-section-index">
-        <header  class="container-header">
-            <div>
-                <nav>
-                    <ul>
-                        <li><a href="#inicio">Inicio</a></li>
-                        <li><a href="#actividades">Actividades</a></li>
-                        <li><a href="#contacto">Contacto</a></li>
+    <div class="page-wrapper">
+        <header class="header">
+            <div class="container">
+                <nav class="navbar">
+                    <a href="#" class="logo">Ingeniería Web</a>
+
+                    <button class="menu-toggle" aria-label="Abrir menú">
+                        <i class="fas fa-bars"></i>
+                    </button>
+
+                    <ul class="nav-links">
+                        <li><a href="#inicio" class="nav-link">Inicio</a></li>
+                        <li><a href="#actividades" class="nav-link">Actividades</a></li>
+                        <li><a href="#contacto" class="nav-link">Contacto</a></li>
                     </ul>
                 </nav>
             </div>
         </header>
 
-        <main class="container-main">
-            <div class="container-content">
-                <h1>Actividades</h1>
-                <p>En esta sección se presentan las actividades realizadas durante el curso de Ingeniería Web.</p>
+        <main class="main-content">
+            <section id="inicio" class="hero-section">
+                <div class="container">
+                    <div class="hero-content">
+                        <h1 class="hero-title">Actividades</h1>
+                        <p class="hero-text">Explora las actividades realizadas durante el curso de Ingeniería Web</p>
+                    </div>
+                </div>
+            </section>
 
-                <div class="container-activities">
-                    <div class="activity">
-                        <a href="/views/cv.html">Ver Curriculum Vitae</a>
-                        <div class="cover">
-                            <p>Curriculum Vitae</p>
+            <section id="actividades" class="activities-section">
+                <div class="container">
+                    <h2 class="section-title">Mis Trabajos</h2>
+                    <p class="section-subtitle">Haz clic en cada tarjeta para ver los detalles</p>
+
+                    <div class="activities-grid">
+                        <div class="activity-card">
+                            <a href="/views/cv.html" class="card-link">
+                                <div class="card-front">
+                                    <i class="fas fa-user-tie card-icon"></i>
+                                    <h3>Curriculum Vitae</h3>
+                                </div>
+                                <div class="card-back">
+                                    <p>Ver CV profesional</p>
+                                    <span class="view-more">Ver más <i class="fas fa-arrow-right"></i></span>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="activity-card">
+                            <a href="/views/form.html" class="card-link">
+                                <div class="card-front">
+                                    <i class="fas fa-clipboard card-icon"></i>
+                                    <h3>HTML Form</h3>
+                                </div>
+                                <div class="card-back">
+                                    <p>Ver Formulario</p>
+                                    <span class="view-more">Ver más <i class="fas fa-arrow-right"></i></span>
+                                </div>
+                            </a>
+                        </div>
+
+                        <!-- Puedes añadir más tarjetas así -->
+                        <div class="activity-card coming-soon">
+                            <div class="card-front">
+                                <i class="fas fa-code card-icon"></i>
+                                <h3>Próximamente</h3>
+                            </div>
+                            <div class="card-back">
+                                <p>Nueva actividad en desarrollo</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </section>
         </main>
 
-        <footer class="container-footer">
-            <div>
-                <p>&copy; 2025 Sebastián López. Todos los derechos reservados.</p>
+        <footer id="contacto" class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <p>&copy; 2025 Sebastián López. Todos los derechos reservados.</p>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/sebastian-lopez-a168a3279/" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://github.com/ImSebas-Dev" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="mailto:lopezsebastian.dev@gmail.com" aria-label="Correo electrónico"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
             </div>
         </footer>
-    </section>
+    </div>
+
+    <script src="/assets/js/script.js"></script>
 </body>
 
 </html>
