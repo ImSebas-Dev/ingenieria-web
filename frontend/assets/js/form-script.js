@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     // URL backend en Render
-    const API_URL = 'https://tu-backend-en-render.onrender.com';
+    const API_URL = 'https://ingenieria-web-egw7.onrender.com';
     
     const form = document.getElementById('signupForm');
     const submitBtn = document.querySelector('.submit-btn');
