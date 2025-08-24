@@ -1,10 +1,12 @@
+import { createClient } from '@supabase/supabase-js'
+
 document.addEventListener('DOMContentLoaded', async function () {
     // Configuración de Supabase
     const SUPABASE_URL = 'https://nbhrufenoymvnlhqqxgz.supabase.co';
     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5iaHJ1ZmVub3ltdm5saHFxeGd6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTU2MzcwMDQsImV4cCI6MjA3MTIxMzAwNH0.4M9Zn1P2L3tY2E9d0oWLahGxCY6RGhiO0ZQ1dc3x59Y';
 
     // Inicializar cliente de Supabase
-    const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
     const form = document.getElementById('signupForm');
     const submitBtn = document.querySelector('.submit-btn');
