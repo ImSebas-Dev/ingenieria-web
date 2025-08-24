@@ -192,11 +192,11 @@ document.addEventListener('DOMContentLoaded', async function () {
             // Obtener datos del formulario
             try {
                 const formData = {
-                    full_name: document.getElementById('fullName').value,
-                    email: document.getElementById('email').value,
-                    password: document.getElementById('password').value,
+                    full_name: document.getElementById('fullName').value.trim(),
+                    email: document.getElementById('email').value.trim(),
+                    password: document.getElementById('password').value.trim(),
                     birth_date: document.getElementById('birthDate').value,
-                    phone: document.getElementById('phone').value,
+                    phone: document.getElementById('phone').value.trim(),
                     terms: document.getElementById('terms').checked,
                 };
 
