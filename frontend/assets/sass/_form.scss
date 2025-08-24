@@ -181,6 +181,12 @@
         }
     }
 
+    .g-recaptcha {
+        justify-content: center;
+        align-items: center;
+        display: flex;
+    }
+
     .submit-btn {
         background: variables.$gradient-purple;
         color: white;
