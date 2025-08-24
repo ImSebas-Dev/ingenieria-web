@@ -1,4 +1,11 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // Configuración de Supabase
+    const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+    const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_URL;
+
+    // Inicializar cliente de Supabase
+    const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
     const form = document.getElementById('signupForm');
     const submitBtn = document.querySelector('.submit-btn');
     const successMessage = document.getElementById('successMessage');
@@ -174,25 +181,79 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Envío del formulario
-    form.addEventListener('submit', function (e) {
+    form.addEventListener('submit', async function (e) {
         e.preventDefault();
 
         if (checkFormValidity()) {
-            // Simular envío
             submitBtn.classList.add('loading');
 
-            // Simular retraso de red
-            setTimeout(() => {
+            // Obtener datos del formulario
+            try {
+                const formData = {
+                    full_name: document.getElementById('fullName').value,
+                    email: document.getElementById('email').value,
+                    password: document.getElementById('password').value,
+                    birth_date: document.getElementById('birthDate').value,
+                    phone: document.getElementById('phone').value,
+                    terms: document.getElementById('terms').checked,
+                };
+
+                // 1. Registrar usuario en Auth de Supabase
+                const { data: authData, error: authError } = await supabase.auth.signUp({
+                    email: formData.email,
+                    password: formData.password,
+                    options: {
+                        data: {
+                            full_name: formData.full_name,
+                            birth_date: formData.birth_date,
+                            phone: formData.phone,
+                        }
+                    }
+                });
+
+                if (authError) {
+                    throw authError;
+                }
+
+                // 2. Insertar datos adicionales en tu tabla de usuarios
+                const { error: dbError } = await supabase
+                    .from('users')
+                    .insert({
+                        id: authData.user.id,
+                        full_name: formData.full_name,
+                        email: formData.email,
+                        birth_date: formData.birth_date,
+                        phone: formData.phone,
+                        created_at: new Date().toISOString(),
+                    });
+
+                if (dbError) {
+                    throw dbError;
+                }
+
+                // Éxito
                 submitBtn.classList.remove('loading');
                 successMessage.classList.add('show');
 
-                // Resetear formulario después de mostrar el mensaje
+                // Resetear formulario
                 form.reset();
                 form.querySelectorAll('.form-group').forEach(group => {
                     group.classList.remove('valid', 'invalid');
                 });
                 submitBtn.disabled = true;
-            }, 1500);
+            } catch (error) {
+                submitBtn.classList.remove('loading');
+                console.error('Error en el registro:', error);
+
+                // Manejar errores específicos
+                if (error.message.includes('already registered')) {
+                    showServerErrors({ email: 'El correo electrónico ya está registrado' });
+                } else if (error.message.includes('password')) {
+                    showServerErrors({ password: 'Error en la contraseña' });
+                } else {
+                    showServerErrors({ general: 'Error en el registro. Por favor, inténtalo de nuevo.' });
+                }
+            }
         }
     });
 
