@@ -27,6 +27,20 @@ document.addEventListener('DOMContentLoaded', async function () {
         phone: /^[0-9]{10,15}$/
     };
 
+    // Callback para reCAPTCHA
+    window.recaptchaCallback = function (response) {
+        isRecaptchaValid = response !== null && response !== '';
+        const recaptchaError = document.getElementById('recaptcha-error');
+
+        if (isRecaptchaValid) {
+            recaptchaError.style.display = 'none';
+        } else {
+            recaptchaError.style.display = 'block';
+        }
+
+        checkFormValidity();
+    };
+
     // Toggle para mostrar/ocultar contraseña
     const togglePasswordBtns = document.querySelectorAll('.toggle-password');
     togglePasswordBtns.forEach(btn => {
@@ -148,6 +162,15 @@ document.addEventListener('DOMContentLoaded', async function () {
             }
         });
 
+        // Verificar reCAPTCHA
+        const recaptchaError = document.getElementById('recaptcha-error');
+        if (!isRecaptchaValid) {
+            allValid = false;
+            recaptchaError.style.display = 'block';
+        } else {
+            recaptchaError.style.display = 'none';
+        }
+
         submitBtn.disabled = !allValid;
         return allValid;
     }
@@ -180,6 +203,13 @@ document.addEventListener('DOMContentLoaded', async function () {
                 errorMessage.textContent = errorMessage.dataset.originalMessage || '';
             }
         });
+
+        // Resetear reCAPTCHA
+        isRecaptchaValid = false;
+        document.getElementById('recaptcha-error').style.display = 'none';
+        if (typeof grecaptcha !== 'undefined') {
+            grecaptcha.reset();
+        }
     }
 
     // Envío del formulario
@@ -243,9 +273,18 @@ document.addEventListener('DOMContentLoaded', async function () {
                     group.classList.remove('valid', 'invalid');
                 });
                 submitBtn.disabled = true;
+
+                // Resetear reCAPTCHA
+                resetAllErrors();
             } catch (error) {
                 submitBtn.classList.remove('loading');
                 console.error('Error en el registro:', error);
+
+                // Resetear reCAPTCHA en caso de error
+                if (typeof grecaptcha !== 'undefined') {
+                    grecaptcha.reset();
+                }
+                isRecaptchaValid = false;
 
                 // Manejar errores específicos
                 if (error.message.includes('already registered')) {

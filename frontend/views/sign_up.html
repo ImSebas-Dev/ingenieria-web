@@ -11,6 +11,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="/frontend/assets/css/styles.css">
+    <script src="https://www.google.com/recaptcha/enterprise.js?render=6LcU_6srAAAAAAltiCplykMI-jYRUWC2Gpp6IzHJ"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
@@ -93,6 +94,11 @@
                     <label for="terms">Acepto los <a href="#" class="terms-link">Términos y Condiciones</a> y la <a
                             href="#" class="terms-link">Política de Privacidad</a></label>
                     <span class="error-message">Debes aceptar los términos y condiciones</span>
+                </div>
+
+                <div class="form-group">
+                    <div class="g-recaptcha" data-sitekey="6LcU_6srAAAAAAltiCplykMI-jYRUWC2Gpp6IzHJ" data-callback="recaptchaCallback"></div>
+                    <span class="error-message" id="recaptcha-error">Debes completar el reCAPTCHA</span>
                 </div>
 
                 <button type="submit" class="submit-btn" disabled>
