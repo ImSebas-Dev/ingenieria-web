@@ -275,20 +275,4 @@ document.addEventListener('DOMContentLoaded', function () {
             successMessage.classList.remove('show');
         }
     });
-
-    // Inicializar tooltips de información (opcional)
-    function initTooltips() {
-        const inputs = form.querySelectorAll('input');
-        inputs.forEach(input => {
-            input.addEventListener('focus', function () {
-                this.title = this.placeholder || '';
-            });
-
-            input.addEventListener('blur', function () {
-                this.title = '';
-            });
-        });
-    }
-
-    initTooltips();
 });
