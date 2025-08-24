@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     // Configuración de Supabase
-    const SUPABASE_URL = NEXT_PUBLIC_SUPABASE_ANON_KEY;
-    const SUPABASE_ANON_KEY = NEXT_PUBLIC_SUPABASE_URL;
+    const SUPABASE_URL = NEXT_PUBLIC_SUPABASE_URL;
+    const SUPABASE_ANON_KEY = NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
     // Inicializar cliente de Supabase
     const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
