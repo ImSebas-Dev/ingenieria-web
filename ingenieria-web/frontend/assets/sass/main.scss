@@ -1,0 +1,24 @@
+@use './variables';
+@use './index';
+@use './cv';
+@use './form';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    line-height: 1.6;
+    color: variables.$text-color;
+    background-color: variables.$bg-color;
+    overflow-x: hidden;
+    background: radial-gradient(circle at top left, #211a2e 0%, #27163e 70%);
+    font-family: 'Poppins', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
