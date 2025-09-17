@@ -1,7 +1,8 @@
-@use './variables';
+@use './variables' as v;
 @use './index';
 @use './cv';
 @use './form';
+@use './fyq';
 
 * {
     margin: 0;
@@ -11,8 +12,8 @@
 
 body {
     line-height: 1.6;
-    color: variables.$text-color;
-    background-color: variables.$bg-color;
+    color: v.$text-color;
+    background-color: v.$bg-color;
     overflow-x: hidden;
     background: radial-gradient(circle at top left, #211a2e 0%, #27163e 70%);
     font-family: 'Poppins', sans-serif;
@@ -21,4 +22,39 @@ body {
 html {
     scroll-behavior: smooth;
     font-size: 16px;
+}
+
+// Footer
+.footer {
+    background-color: v.$dark-color;
+    padding: 2rem 0;
+    margin-top: auto;
+
+    .footer-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+
+        p {
+            color: v.$text-light;
+            font-size: 0.9rem;
+        }
+    }
+
+    .social-links-index {
+        display: flex;
+        gap: 1.5rem;
+
+        a {
+            color: v.$text-color;
+            font-size: 1.2rem;
+            transition: v.$transition;
+
+            &:hover {
+                color: v.$primary-color;
+                transform: translateY(-3px);
+            }
+        }
+    }
 }
