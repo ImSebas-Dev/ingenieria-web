@@ -76,9 +76,101 @@
     }
 
     .faq-container {
-        flex: 1;
-        padding: 6rem 1.5rem 2rem;
-        max-width: v.$max-width;
-        margin: 0 auto;
+        max-width: 800px;
+        margin: 5rem auto;
+        padding: 2rem;
+
+        .faq-list {
+            margin-top: 2rem;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #eaeaea;
+            margin-bottom: 1rem;
+        }
+
+        .faq-question {
+            width: 100%;
+            text-align: left;
+            background: none;
+            border: none;
+            padding: 1.5rem 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: color 0.3s ease;
+            color: v.$text-color;
+        }
+
+        .faq-question:hover {
+            color: v.$primary-color;
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-question.active::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            padding: 0 0;
+        }
+
+        .faq-answer.active {
+            max-height: 300px;
+            padding: 0 0 1.5rem 0;
+        }
+
+        .faq-loading {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .header {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: rgba(v.$dark-color, 0.95);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 2rem;
+                transition: v.$transition;
+
+                &.active {
+                    left: 0;
+                }
+            }
+
+            .menu-toggle {
+                display: block;
+                z-index: 1001;
+            }
+        }
+
+        .faq-container {
+            padding: 1rem;
+        }
+        
+        .faq-question {
+            font-size: 1rem;
+            padding: 1rem 0;
+        }
     }
 }
