@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Preguntas Frecuentes | Tu Nombre</title>
+    <title>Mi Biblioteca | Tu Nombre</title>
     <meta name="description" content="Recursos, prácticas y fundamentos de ingeniería web para estudiantes y desarrolladores.">
     <link rel="icon" type="image/x-icon" href="/frontend/assets/img/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    <div class="fyq-container">
+    <div class="open-container-main">
         <header class="header">
             <div class="container">
                 <nav class="navbar">
@@ -33,13 +33,21 @@
             </div>
         </header>
 
-        <main class="faq-container">
-            <h1>Preguntas Frecuentes</h1>
-            <p>Encuentra respuestas a las preguntas más comunes sobre mis servicios y experiencia.</p>
+        <main class="open-container">
+            <h1>Mi Biblioteca Personal</h1>
+            <p>Una colección de libros que he leído y recomiendo.</p>
 
-            <div class="faq-list">
-                <!-- Las preguntas se cargarán dinámicamente desde el CMS -->
-                <div class="faq-loading">Cargando preguntas frecuentes...</div>
+            <div class="filters">
+                <input type="text" id="searchInput" placeholder="Buscar libros...">
+                <select id="categoryFilter">
+                    <option value="">Todas las categorías</option>
+                    <!-- Las categorías se cargarán dinámicamente -->
+                </select>
+            </div>
+
+            <div class="grid-container">
+                <!-- Los libros se cargarán dinámicamente desde el CMS -->
+                <div class="loading">Cargando libros...</div>
             </div>
         </main>
 
@@ -58,7 +66,8 @@
             </div>
         </footer>
     </div>
-    <script src="/frontend/assets/js/faq-script.js"></script>
+
+    <script src="/frontend/assets/js/open-script.js"></script>
 </body>
 
 </html>
