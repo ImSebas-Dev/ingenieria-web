@@ -19,7 +19,7 @@
         position: fixed;
         width: 100%;
         z-index: 1000;
-        padding: 1rem 0;
+        padding: 1rem 1.5rem;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 
         .navbar {
@@ -132,96 +132,213 @@
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 2rem;
             margin-top: 2rem;
-        }
 
-        .activity-card {
-            background: v.$gradient-card;
-            border-radius: v.$border-radius;
-            overflow: hidden;
-            box-shadow: v.$box-shadow;
-            transition: v.$transition;
-            height: 300px;
-            position: relative;
-            perspective: 1000px;
+            .activity-card {
+                background: v.$gradient-card;
+                border-radius: v.$border-radius;
+                overflow: hidden;
+                box-shadow: v.$box-shadow;
+                transition: v.$transition;
+                height: 300px;
+                position: relative;
+                perspective: 1000px;
 
-            &:hover {
-                transform: translateY(-10px);
-                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-            }
+                &:hover {
+                    transform: translateY(-10px);
+                    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+                }
 
-            &.coming-soon {
-                opacity: 0.7;
+                &.coming-soon {
+                    opacity: 0.7;
+
+                    .card-front {
+                        background: rgba(v.$dark-color, 0.7);
+                    }
+                }
+
+                .card-link {
+                    display: block;
+                    height: 100%;
+                    text-decoration: none;
+                    color: inherit;
+                }
+
+                .card-front,
+                .card-back {
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    backface-visibility: hidden;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 2rem;
+                    transition: transform 0.6s ease;
+                    border-radius: v.$border-radius;
+                }
 
                 .card-front {
-                    background: rgba(v.$dark-color, 0.7);
-                }
-            }
+                    background: v.$gradient-card;
+                    transform: rotateY(0deg);
 
-            .card-link {
-                display: block;
-                height: 100%;
-                text-decoration: none;
-                color: inherit;
-            }
+                    .card-icon {
+                        font-size: 3rem;
+                        margin-bottom: 1.5rem;
+                        color: v.$primary-color;
+                    }
 
-            .card-front,
-            .card-back {
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                backface-visibility: hidden;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                padding: 2rem;
-                transition: transform 0.6s ease;
-                border-radius: v.$border-radius;
-            }
-
-            .card-front {
-                background: v.$gradient-card;
-                transform: rotateY(0deg);
-
-                .card-icon {
-                    font-size: 3rem;
-                    margin-bottom: 1.5rem;
-                    color: v.$primary-color;
+                    h3 {
+                        font-size: 1.5rem;
+                        color: v.$light-color;
+                        text-align: center;
+                    }
                 }
 
-                h3 {
-                    font-size: 1.5rem;
+                .card-back {
+                    background: v.$gradient-purple;
+                    transform: rotateY(180deg);
                     color: v.$light-color;
                     text-align: center;
+
+                    p {
+                        margin-bottom: 1rem;
+                        font-size: 1.1rem;
+                    }
+
+                    .view-more {
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 0.5rem;
+                        margin-top: 1rem;
+                        font-weight: 600;
+                    }
+                }
+
+                &:hover .card-front {
+                    transform: rotateY(180deg);
+                }
+
+                &:hover .card-back {
+                    transform: rotateY(0deg);
                 }
             }
+        }
+    }
 
-            .card-back {
-                background: v.$gradient-purple;
-                transform: rotateY(180deg);
-                color: v.$light-color;
-                text-align: center;
+    // Friend Section
+    .friends-section {
+        padding: 4rem 0;
 
-                p {
-                    margin-bottom: 1rem;
-                    font-size: 1.1rem;
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: v.$light-color;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: v.$text-light;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        .friend-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+
+            .friend-card {
+                background: v.$gradient-card;
+                border-radius: v.$border-radius;
+                overflow: hidden;
+                box-shadow: v.$box-shadow;
+                transition: v.$transition;
+                height: 300px;
+                position: relative;
+                perspective: 1000px;
+
+                &:hover {
+                    transform: translateY(-10px);
+                    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
                 }
 
-                .view-more {
-                    display: inline-flex;
+                &.coming-soon {
+                    opacity: 0.7;
+
+                    .card-front {
+                        background: rgba(v.$dark-color, 0.7);
+                    }
+                }
+
+                .card-link {
+                    display: block;
+                    height: 100%;
+                    text-decoration: none;
+                    color: inherit;
+                }
+
+                .card-front,
+                .card-back {
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    backface-visibility: hidden;
+                    display: flex;
+                    flex-direction: column;
                     align-items: center;
-                    gap: 0.5rem;
-                    margin-top: 1rem;
-                    font-weight: 600;
+                    justify-content: center;
+                    padding: 2rem;
+                    transition: transform 0.6s ease;
+                    border-radius: v.$border-radius;
                 }
-            }
 
-            &:hover .card-front {
-                transform: rotateY(180deg);
-            }
+                .card-front {
+                    background: v.$gradient-card;
+                    transform: rotateY(0deg);
 
-            &:hover .card-back {
-                transform: rotateY(0deg);
+                    .card-icon {
+                        font-size: 3rem;
+                        margin-bottom: 1.5rem;
+                        color: v.$primary-color;
+                    }
+
+                    h3 {
+                        font-size: 1.5rem;
+                        color: v.$light-color;
+                        text-align: center;
+                    }
+                }
+
+                .card-back {
+                    background: v.$gradient-purple;
+                    transform: rotateY(180deg);
+                    color: v.$light-color;
+                    text-align: center;
+
+                    p {
+                        margin-bottom: 1rem;
+                        font-size: 1.1rem;
+                    }
+
+                    .view-more {
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 0.5rem;
+                        margin-top: 1rem;
+                        font-weight: 600;
+                    }
+                }
+
+                &:hover .card-front {
+                    transform: rotateY(180deg);
+                }
+
+                &:hover .card-back {
+                    transform: rotateY(0deg);
+                }
             }
         }
     }

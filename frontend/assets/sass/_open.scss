@@ -104,6 +104,7 @@
                 border-color: v.$primary-color;
                 box-shadow: 0 0 0 2px rgba(v.$primary-color, 0.2);
             }
+
             option {
                 background: v.$dark-color;
                 color: v.$text-color;
@@ -238,15 +239,15 @@
         .grid-container {
             grid-template-columns: 1fr;
             gap: 1.5rem;
-        }
 
-        .filters {
-            flex-direction: column;
-        }
+            .filters {
+                flex-direction: column;
+            }
 
-        .filters input,
-        .filters select {
-            width: 100%;
+            .filters input,
+            .filters select {
+                width: 100%;
+            }
         }
     }
 }
