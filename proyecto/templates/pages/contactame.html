@@ -1,0 +1,143 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+
+{% block title %}
+Ingeniería Web - Contáctame
+{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">Ingeniería Web</a>
+
+                <button class="menu-toggle" aria-label="Abrir menú">
+                    <i class="fas fa-bars"></i>
+                </button>
+
+                <ul class="nav-links">
+                    <li><a href="{% url 'index' %}" class="nav-link">Volver</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="contact-container">
+        <div class="form-header">
+            <h1>Contáctame</h1>
+            <p>Completa el formulario y me pondré en contacto contigo lo antes que pueda.</p>
+        </div>
+
+        <!-- Mostrar mensajes de Django -->
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <!-- Mostrar errores generales del formulario -->
+        {% if form.non_field_errors %}
+            <div class="alert alert-danger">
+                <strong>Errores en el formulario:</strong>
+                <ul>
+                    {% for error in form.non_field_errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
+        <form id="contactForm" class="contact-form" method="post" novalidate>
+            {% csrf_token %}
+            
+            <!-- Campo Nombre -->
+            <div class="form-group">
+                <label for="{{ form.nombre.id_for_label }}">{{ form.nombre.label }}</label>
+                {{ form.nombre }}
+                {% if form.nombre.errors %}
+                    <span class="error-message">{{ form.nombre.errors.0 }}</span>
+                {% else %}
+                    <span class="error-message" id="nameError"></span>
+                {% endif %}
+            </div>
+
+            <!-- Campo Email -->
+            <div class="form-group">
+                <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+                {{ form.email }}
+                {% if form.email.errors %}
+                    <span class="error-message">{{ form.email.errors.0 }}</span>
+                {% else %}
+                    <span class="error-message" id="emailError"></span>
+                {% endif %}
+            </div>
+
+            <!-- Campo Teléfono -->
+            <div class="form-group">
+                <label for="{{ form.phone.id_for_label }}">{{ form.phone.label }}</label>
+                {{ form.phone }}
+                {% if form.phone.errors %}
+                    <span class="error-message">{{ form.phone.errors.0 }}</span>
+                {% else %}
+                    <span class="error-message" id="phoneError"></span>
+                {% endif %}
+            </div>
+
+            <!-- Campo Asunto -->
+            <div class="form-group">
+                <label for="{{ form.asunto.id_for_label }}">{{ form.asunto.label }}</label>
+                {{ form.asunto }}
+                {% if form.asunto.errors %}
+                    <span class="error-message">{{ form.asunto.errors.0 }}</span>
+                {% else %}
+                    <span class="error-message" id="subjectError"></span>
+                {% endif %}
+            </div>
+
+            <!-- Campo Mensaje -->
+            <div class="form-group">
+                <label for="{{ form.mensaje.id_for_label }}">{{ form.mensaje.label }}</label>
+                {{ form.mensaje }}
+                {% if form.mensaje.errors %}
+                    <span class="error-message">{{ form.mensaje.errors.0 }}</span>
+                {% else %}
+                    <span class="error-message" id="messageError"></span>
+                {% endif %}
+            </div>
+
+            <div class="g-recaptcha" data-sitekey="6LfR0rArAAAAAHocYDMtX1BXfXwLE0s29vVCPwgg"></div>
+
+            <div class="form-group">
+                <button type="submit" id="submitBtn">Enviar mensaje</button>
+            </div>
+
+            <div id="formMessage" class="form-message"></div>
+        </form>
+    </main>
+
+    <footer id="contacto" class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2025 Sebastián López. Todos los derechos reservados.</p>
+                <div class="social-links-index">
+                    <a href="https://www.linkedin.com/in/sebastian-lopez-a168a3279/" aria-label="LinkedIn"><i
+                            class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/ImSebas-Dev" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="mailto:lopezsebastian.dev@gmail.com" aria-label="Correo electrónico"><i
+                            class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'js/contact-script.js' %}"></script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+{% endblock %}
