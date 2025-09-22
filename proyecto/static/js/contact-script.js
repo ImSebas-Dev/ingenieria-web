@@ -1,4 +1,7 @@
+// static/js/contact-script.js
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('✅ Script de contacto cargado');
+    
     // Menú móvil
     const menuToggle = document.querySelector('.menu-toggle');
     const navLinks = document.querySelector('.nav-links');
@@ -12,297 +15,276 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Validación del formulario
     const form = document.getElementById('contactForm');
-    
-    if (!form) {
-        console.error('Formulario no encontrado');
-        return;
-    }
-    
     const submitBtn = document.getElementById('submitBtn');
     const formMessage = document.getElementById('formMessage');
     
-    // Expresiones regulares para validación
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const phoneRegex = /^[0-9]{10}$/;
+    if (!form) {
+        console.error('❌ Formulario no encontrado');
+        return;
+    }
     
-    // Estados de validación - USANDO LOS IDs CORRECTOS DE DJANGO
-    const fieldValidations = {
-        name: false,          // id_name
-        email: false,         // id_email
-        phone: true,          // id_phone (Opcional)
-        subject: false,       // id_subject
-        message: false,       // id_message
-        captcha: false
+    // Expresiones regulares para validación (coinciden con forms.py)
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /^\d{10}$/; // 10 dígitos exactos
+    
+    // Estados de validación
+    const fieldStates = {
+        nombre: { isValid: false, isOptional: false },
+        email: { isValid: false, isOptional: false },
+        phone: { isValid: true, isOptional: true }, // Teléfono es opcional
+        asunto: { isValid: false, isOptional: false },
+        mensaje: { isValid: false, isOptional: false },
+        captcha: { isValid: false, isOptional: false }
     };
     
-    // Función para mostrar errores
-    function showError(fieldId, message) {
-        const errorElement = document.getElementById(fieldId + 'Error');
-        const inputElement = document.getElementById(fieldId);
-        
-        if (!inputElement) {
-            console.error('Elemento no encontrado:', fieldId);
-            return;
+    // Elementos de los campos (usando los IDs de Django)
+    const fields = {
+        nombre: document.getElementById('name'),
+        email: document.getElementById('email'),
+        phone: document.getElementById('phone'),
+        asunto: document.getElementById('subject'),
+        mensaje: document.getElementById('message')
+    };
+    
+    // Verificar que todos los campos existan
+    Object.entries(fields).forEach(([key, field]) => {
+        if (!field) {
+            console.error(`❌ Campo ${key} no encontrado`);
         }
+    });
+    
+    // Función para mostrar errores
+    function showError(fieldName, message) {
+        const errorElement = document.getElementById(`${fieldName}Error`);
+        const fieldElement = fields[fieldName];
         
-        const formGroup = inputElement.closest('.form-group');
-        
-        if (errorElement) {
+        if (errorElement && fieldElement) {
             errorElement.textContent = message;
             errorElement.style.display = 'block';
+            fieldElement.classList.add('invalid');
+            fieldElement.classList.remove('valid');
         }
         
-        if (formGroup) {
-            formGroup.classList.add('invalid');
-            formGroup.classList.remove('valid');
-        }
-        
-        fieldValidations[fieldId.split('_')[1]] = false; // Convertir id_name a name
+        fieldStates[fieldName].isValid = false;
         updateSubmitButton();
     }
     
     // Función para limpiar errores
-    function clearError(fieldId) {
-        const errorElement = document.getElementById(fieldId + 'Error');
-        const inputElement = document.getElementById(fieldId);
+    function clearError(fieldName) {
+        const errorElement = document.getElementById(`${fieldName}Error`);
+        const fieldElement = fields[fieldName];
         
-        if (!inputElement) {
-            console.error('Elemento no encontrado:', fieldId);
-            return;
-        }
-        
-        const formGroup = inputElement.closest('.form-group');
-        
-        if (errorElement) {
+        if (errorElement && fieldElement) {
             errorElement.textContent = '';
             errorElement.style.display = 'none';
+            fieldElement.classList.remove('invalid');
+            fieldElement.classList.add('valid');
         }
         
-        if (formGroup) {
-            formGroup.classList.remove('invalid');
-            formGroup.classList.add('valid');
-            
-            // Remover la clase valid después de 2 segundos
-            setTimeout(() => {
-                formGroup.classList.remove('valid');
-            }, 2000);
-        }
-        
-        fieldValidations[fieldId.split('_')[1]] = true; // Convertir id_name a name
+        fieldStates[fieldName].isValid = true;
         updateSubmitButton();
     }
     
-    // Validar campo individual
-    function validateField(fieldId, validationFn, errorMessage, optional = false) {
-        const field = document.getElementById(fieldId);
-        if (!field) return optional; // Si no existe y es opcional, es válido
+    // Validaciones específicas para cada campo
+    const validators = {
+        nombre: (value) => {
+            if (!value.trim()) return 'El nombre es requerido';
+            if (value.trim().length < 4) return 'El nombre debe tener al menos 4 caracteres';
+            return null;
+        },
         
-        const value = field.value.trim();
+        email: (value) => {
+            if (!value.trim()) return 'El email es requerido';
+            if (!emailRegex.test(value)) return 'Ingresa un email válido';
+            return null;
+        },
         
-        // Si es opcional y está vacío, es válido
-        if (optional && value === '') {
-            clearError(fieldId);
-            return true;
+        phone: (value) => {
+            if (!value.trim()) return null; // Opcional, no hay error si está vacío
+            if (!phoneRegex.test(value.replace(/\s+/g, ''))) {
+                return 'El teléfono debe tener 10 dígitos';
+            }
+            return null;
+        },
+        
+        asunto: (value) => {
+            if (!value || value === '') return 'Selecciona un asunto';
+            return null;
+        },
+        
+        mensaje: (value) => {
+            if (!value.trim()) return 'El mensaje es requerido';
+            if (value.trim().length < 10) return 'El mensaje debe tener al menos 10 caracteres';
+            return null;
         }
+    };
+    
+    // Validar un campo individual
+    function validateField(fieldName) {
+        const field = fields[fieldName];
+        if (!field) return;
         
-        if (!validationFn(value)) {
-            showError(fieldId, errorMessage);
-            return false;
+        const value = field.value;
+        const error = validators[fieldName](value);
+        
+        if (error) {
+            showError(fieldName, error);
+        } else {
+            clearError(fieldName);
         }
-        
-        clearError(fieldId);
-        return true;
     }
     
-    // Validaciones específicas
-    function validateName(name) {
-        return name.length >= 4;
+    // Validar todos los campos
+    function validateAllFields() {
+        Object.keys(fields).forEach(fieldName => {
+            validateField(fieldName);
+        });
+        validateCaptcha();
+        return isFormValid();
     }
     
-    function validateEmail(email) {
-        return emailRegex.test(email);
-    }
-    
-    function validatePhone(phone) {
-        return phone === '' || phoneRegex.test(phone);
-    }
-    
-    function validateSubject(subject) {
-        return subject !== '';
-    }
-    
-    function validateMessage(message) {
-        return message.length >= 10;
-    }
-    
-    // Validar CAPTCHA
-    function validateCaptcha() {
-        if (typeof grecaptcha === 'undefined') {
-            console.warn('reCAPTCHA no está cargado');
-            fieldValidations.captcha = true; // Asumir válido si no está cargado
-            return true;
-        }
-        
-        const response = grecaptcha.getResponse();
-        fieldValidations.captcha = response.length > 0;
-        updateSubmitButton();
-        return fieldValidations.captcha;
+    // Verificar si el formulario es válido
+    function isFormValid() {
+        return Object.values(fieldStates).every(state => state.isValid);
     }
     
     // Actualizar estado del botón de envío
     function updateSubmitButton() {
         if (!submitBtn) return;
         
-        const allValid = Object.values(fieldValidations).every(status => status === true);
-        submitBtn.disabled = !allValid;
+        const isValid = isFormValid();
+        submitBtn.disabled = !isValid;
         
-        // Feedback visual del botón
-        if (allValid) {
+        if (isValid) {
             submitBtn.classList.add('valid');
         } else {
             submitBtn.classList.remove('valid');
         }
     }
     
-    // Validar formulario completo
-    function validateForm() {
-        let isValid = true;
-        
-        // Validar campos con los IDs CORRECTOS de Django
-        if (!validateField('id_name', validateName, 'El nombre debe tener al menos 4 caracteres')) {
-            isValid = false;
+    // Validar CAPTCHA
+    /*
+    function validateCaptcha() {
+        if (typeof grecaptcha === 'undefined') {
+            console.warn('reCAPTCHA no está disponible');
+            fieldStates.captcha.isValid = true;
+            return true;
         }
         
-        if (!validateField('id_email', validateEmail, 'Ingresa un correo electrónico válido')) {
-            isValid = false;
+        const response = grecaptcha.getResponse();
+        const isValid = response.length > 0;
+        fieldStates.captcha.isValid = isValid;
+        
+        if (!isValid && formMessage) {
+            formMessage.textContent = 'Por favor, completa el CAPTCHA';
+            formMessage.className = 'form-message error';
+            formMessage.style.display = 'block';
         }
         
-        if (!validateField('id_phone', validatePhone, 'Ingresa un número de teléfono válido (10 dígitos)', true)) {
-            isValid = false;
-        }
-        
-        if (!validateField('id_subject', validateSubject, 'Selecciona un asunto')) {
-            isValid = false;
-        }
-        
-        if (!validateField('id_message', validateMessage, 'El mensaje debe tener al menos 10 caracteres')) {
-            isValid = false;
-        }
-        
-        if (!validateCaptcha()) {
-            isValid = false;
-            if (formMessage) {
-                formMessage.textContent = 'Por favor, completa el CAPTCHA';
-                formMessage.className = 'form-message error';
-                formMessage.style.display = 'block';
-            }
-        }
-        
+        updateSubmitButton();
         return isValid;
-    }
+    }*/
     
     // Mostrar mensaje de éxito/error
-    function showMessage(message, isSuccess = true) {
+    function showFormMessage(message, isSuccess = true) {
         if (!formMessage) return;
         
         formMessage.textContent = message;
         formMessage.className = isSuccess ? 'form-message success' : 'form-message error';
         formMessage.style.display = 'block';
         
-        // Ocultar mensaje después de 5 segundos
         setTimeout(() => {
             formMessage.style.display = 'none';
         }, 5000);
     }
     
-    // Event listeners para validación en tiempo real
-    const fieldsToValidate = [
-        { id: 'id_name', validator: validateName, message: 'El nombre debe tener al menos 4 caracteres' },
-        { id: 'id_email', validator: validateEmail, message: 'Ingresa un correo electrónico válido' },
-        { id: 'id_phone', validator: validatePhone, message: 'Ingresa un número de teléfono válido (10 dígitos)', optional: true },
-        { id: 'id_message', validator: validateMessage, message: 'El mensaje debe tener al menos 10 caracteres' }
-    ];
+    // Configurar event listeners para validación en tiempo real
+    function setupRealTimeValidation() {
+        Object.entries(fields).forEach(([fieldName, field]) => {
+            if (!field) return;
+            
+            // Validar después de escribir (con debounce)
+            let timeout;
+            field.addEventListener('input', () => {
+                clearTimeout(timeout);
+                timeout = setTimeout(() => {
+                    validateField(fieldName);
+                }, 500);
+            });
+            
+            // Validar al perder el foco
+            field.addEventListener('blur', () => {
+                validateField(fieldName);
+            });
+        });
+        
+        // Validar CAPTCHA periódicamente
+        /*
+        if (typeof grecaptcha !== 'undefined') {
+            setInterval(validateCaptcha, 1000);
+        }*/
+    }
     
-    fieldsToValidate.forEach(field => {
-        const element = document.getElementById(field.id);
-        if (!element) {
-            console.warn('Campo no encontrado:', field.id);
-            return;
+    // Limpiar números de teléfono (quitar espacios y guiones)
+    function cleanPhoneNumber() {
+        if (fields.phone) {
+            fields.phone.addEventListener('input', function(e) {
+                // Permitir solo números
+                this.value = this.value.replace(/[^\d]/g, '');
+                
+                // Limitar a 10 dígitos
+                if (this.value.length > 10) {
+                    this.value = this.value.slice(0, 10);
+                }
+            });
         }
-        
-        // Validar mientras se escribe (con delay para no ser demasiado agresivo)
-        let timeout;
-        element.addEventListener('input', function() {
-            clearTimeout(timeout);
-            timeout = setTimeout(() => {
-                validateField(field.id, field.validator, field.message, field.optional);
-            }, 500);
-        });
-        
-        // Validar al perder el foco
-        element.addEventListener('blur', function() {
-            validateField(field.id, field.validator, field.message, field.optional);
-        });
-    });
-    
-    // Validación específica para el select
-    const subjectSelect = document.getElementById('id_subject');
-    if (subjectSelect) {
-        subjectSelect.addEventListener('change', function() {
-            validateField('id_subject', validateSubject, 'Selecciona un asunto');
-        });
-        
-        // Validar inicialmente
-        validateField('id_subject', validateSubject, 'Selecciona un asunto');
-    } else {
-        console.warn('Select de asunto no encontrado');
     }
     
-    // Validación del CAPTCHA
-    if (typeof grecaptcha !== 'undefined') {
-        // Verificar CAPTCHA periódicamente
-        setInterval(validateCaptcha, 1000);
-    } else {
-        console.warn('reCAPTCHA no está disponible');
-        // Si no hay reCAPTCHA, considerar válido
-        fieldValidations.captcha = true;
-        updateSubmitButton();
-    }
-    
-    // Event listener para el envío del formulario
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        console.log('Formulario enviado - Validando...');
-        
-        if (validateForm()) {
-            console.log('Formulario válido - Enviando...');
-            
-            // Mostrar estado de carga
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Enviando...';
-            
-            // Enviar formulario normalmente (Django se encarga)
-            this.submit();
-            
-        } else {
-            console.log('Formulario inválido');
-            showMessage('Por favor, corrige los errores en el formulario', false);
-            
-            // Hacer scroll al primer error
-            const firstError = form.querySelector('.invalid');
-            if (firstError) {
-                firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    // Prevenir envío del formulario si no es válido
+    function preventInvalidSubmit() {
+        form.addEventListener('submit', function(e) {
+            if (!validateAllFields()) {
+                e.preventDefault();
+                showFormMessage('Por favor, corrige los errores en el formulario', false);
+                
+                // Scroll al primer error
+                const firstError = form.querySelector('.invalid');
+                if (firstError) {
+                    firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    firstError.focus();
+                }
+            } else {
+                // Formulario válido, mostrar estado de carga
+                if (submitBtn) {
+                    submitBtn.disabled = true;
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+                }
             }
-        }
-    });
+        });
+    }
     
-    // Validar campos inicialmente
-    fieldsToValidate.forEach(field => {
-        validateField(field.id, field.validator, field.message, field.optional);
-    });
-    validateField('id_subject', validateSubject, 'Selecciona un asunto');
+    // Inicializar validación
+    function initValidation() {
+        // Validar campos inicialmente
+        Object.keys(fields).forEach(fieldName => {
+            validateField(fieldName);
+        });
+        
+        // Configurar validación en tiempo real
+        setupRealTimeValidation();
+        
+        // Limpiar formato de teléfono
+        cleanPhoneNumber();
+        
+        // Prevenir envío inválido
+        preventInvalidSubmit();
+        
+        // Actualizar estado inicial del botón
+        updateSubmitButton();
+        
+        console.log('✅ Validación inicializada');
+    }
     
-    // Inicializar estado del botón
-    updateSubmitButton();
+    // Iniciar todo
+    initValidation();
 });

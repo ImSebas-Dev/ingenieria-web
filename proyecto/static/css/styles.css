@@ -668,6 +668,9 @@
   flex-direction: column;
   min-height: 100vh;
   background: radial-gradient(circle at top left, #211a2e 0%, #27163e 70%);
+  /* Botón de enviar */
+  /* Mensajes del formulario */
+  /* Spinner para el botón de carga */
 }
 .form-container .header {
   background-color: rgba(34, 26, 46, 0.9);
@@ -741,9 +744,6 @@
   max-width: 500px;
   margin: 6rem auto 4rem auto;
   /* Para los mensajes de error de Django */
-  /* Estados del botón */
-  /* Estados de los campos */
-  /* Mensajes del formulario */
 }
 .form-container .contact-container::before {
   content: "";
@@ -760,57 +760,22 @@
   margin-bottom: 20px;
   border-radius: 5px;
   border: 1px solid transparent;
+  backdrop-filter: blur(10px);
+  background-color: rgba(0, 0, 0, 0.7);
 }
 .form-container .contact-container .alert-success {
-  background-color: #d4edda;
-  border-color: #c3e6cb;
-  color: #155724;
+  border-color: rgba(76, 175, 80, 0.5);
+  color: #4CAF50;
+  background-color: rgba(76, 175, 80, 0.1);
 }
 .form-container .contact-container .alert-danger {
-  background-color: #f8d7da;
-  border-color: #f5c6cb;
-  color: #721c24;
+  border-color: rgba(244, 67, 54, 0.5);
+  color: #F44336;
+  background-color: rgba(244, 67, 54, 0.1);
 }
 .form-container .contact-container .alert ul {
   margin: 0;
   padding-left: 20px;
-}
-.form-container .contact-container #submitBtn:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-  opacity: 0.7;
-}
-.form-container .contact-container #submitBtn.valid {
-  background-color: #28a745;
-}
-.form-container .contact-container #submitBtn.valid:hover {
-  background-color: #218838;
-}
-.form-container .contact-container .form-group.valid input,
-.form-container .contact-container .form-group.valid select,
-.form-container .contact-container .form-group.valid textarea {
-  border-color: #28a745;
-}
-.form-container .contact-container .form-group.invalid input,
-.form-container .contact-container .form-group.invalid select,
-.form-container .contact-container .form-group.invalid textarea {
-  border-color: #dc3545;
-}
-.form-container .contact-container .form-message {
-  padding: 15px;
-  margin: 20px 0;
-  border-radius: 5px;
-  display: none;
-}
-.form-container .contact-container .form-message.success {
-  background-color: #d4edda;
-  border: 1px solid #c3e6cb;
-  color: #155724;
-}
-.form-container .contact-container .form-message.error {
-  background-color: #f8d7da;
-  border: 1px solid #f5c6cb;
-  color: #721c24;
 }
 .form-container .form-header {
   text-align: center;
@@ -836,6 +801,7 @@
 }
 .form-container .form-group {
   position: relative;
+  /* Estados de validación */
 }
 .form-container .form-group label {
   display: block;
@@ -847,23 +813,41 @@
 .form-container .form-group .input-wrapper {
   position: relative;
 }
-.form-container .form-group input {
+.form-container .form-group input, .form-container .form-group select, .form-container .form-group textarea {
   width: 100%;
-  padding: 0.8rem 1rem 0.8rem 2.5rem;
+  padding: 0.8rem 1rem;
   border: 1px solid rgba(110, 69, 226, 0.3);
   border-radius: 12px;
   background: rgba(34, 26, 46, 0.7);
   color: #e6e6e6;
   font-family: "Poppins", sans-serif;
-  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: all 0.3s ease;
 }
-.form-container .form-group input:focus {
+.form-container .form-group input:focus, .form-container .form-group select:focus, .form-container .form-group textarea:focus {
   outline: none;
   border-color: #6e45e2;
   box-shadow: 0 0 0 2px rgba(110, 69, 226, 0.2);
 }
-.form-container .form-group input::placeholder {
+.form-container .form-group input::placeholder, .form-container .form-group select::placeholder, .form-container .form-group textarea::placeholder {
   color: rgba(163, 163, 163, 0.6);
+}
+.form-container .form-group input {
+  padding: 0.8rem 1rem 0.8rem 2.5rem;
+}
+.form-container .form-group select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23a78bfa'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1rem;
+}
+.form-container .form-group select option {
+  background: #221a2e;
+  color: #e6e6e6;
+}
+.form-container .form-group textarea {
+  min-height: 100px;
+  resize: vertical;
 }
 .form-container .form-group .error-message {
   display: none;
@@ -871,52 +855,23 @@
   font-size: 0.75rem;
   margin-top: 0.3rem;
   padding-left: 0.3rem;
+  font-weight: 500;
 }
-.form-container .form-group select {
-  width: 100%;
-  padding: 0.8rem 1rem;
-  border: 1px solid rgba(110, 69, 226, 0.3);
-  border-radius: 12px;
-  background: rgba(34, 26, 46, 0.7);
-  color: #e6e6e6;
-  font-family: "Poppins", sans-serif;
-  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-  appearance: none;
-  background-image: url('{% static "images/arrow-down.svg" %}');
-  background-repeat: no-repeat;
-  background-position: right 1rem center;
-  background-size: 1rem;
+.form-container .form-group.valid input, .form-container .form-group.valid select, .form-container .form-group.valid textarea {
+  border-color: #4CAF50;
+  background: rgba(76, 175, 80, 0.1);
 }
-.form-container .form-group select:focus {
-  outline: none;
-  border-color: #6e45e2;
-  box-shadow: 0 0 0 2px rgba(110, 69, 226, 0.2);
+.form-container .form-group.valid .error-message {
+  display: none;
 }
-.form-container .form-group select option {
-  background: #221a2e;
-  color: #e6e6e6;
+.form-container .form-group.invalid input, .form-container .form-group.invalid select, .form-container .form-group.invalid textarea {
+  border-color: #F44336;
+  background: rgba(244, 67, 54, 0.1);
 }
-.form-container .form-group textarea {
-  width: 100%;
-  padding: 0.8rem 1rem;
-  border: 1px solid rgba(110, 69, 226, 0.3);
-  border-radius: 12px;
-  background: rgba(34, 26, 46, 0.7);
-  color: #e6e6e6;
-  font-family: "Poppins", sans-serif;
-  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-  min-height: 100px;
-  resize: vertical;
+.form-container .form-group.invalid .error-message {
+  display: block;
 }
-.form-container .form-group textarea:focus {
-  outline: none;
-  border-color: #6e45e2;
-  box-shadow: 0 0 0 2px rgba(110, 69, 226, 0.2);
-}
-.form-container .form-group textarea::placeholder {
-  color: rgba(163, 163, 163, 0.6);
-}
-.form-container .form-group button {
+.form-container #submitBtn {
   width: 100%;
   padding: 0.8rem;
   border: none;
@@ -926,28 +881,66 @@
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: all 0.3s ease;
+  margin-top: 1rem;
 }
-.form-container .form-group button:hover {
+.form-container #submitBtn:hover:not(:disabled) {
   transform: translateY(-2px);
   box-shadow: 0 10px 20px rgba(110, 69, 226, 0.3);
 }
-.form-container .form-group.invalid input select textarea {
-  border-color: #ff6b6b;
+.form-container #submitBtn:disabled {
+  background: rgba(163, 163, 163, 0.3);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+  opacity: 0.7;
 }
-.form-container .form-group.invalid input select textarea .error-message {
-  display: block;
+.form-container #submitBtn.valid {
+  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
 }
-.form-container .form-group.valid input {
-  border-color: #51cf66;
+.form-container #submitBtn.valid:hover {
+  box-shadow: 0 10px 20px rgba(76, 175, 80, 0.3);
 }
-.form-container .form-group.valid i {
-  color: #51cf66;
+.form-container .form-message {
+  padding: 15px;
+  margin: 20px 0;
+  border-radius: 12px;
+  display: none;
+  font-weight: 500;
+  backdrop-filter: blur(10px);
+  background-color: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.form-container .form-message.success {
+  color: #4CAF50;
+  border-color: rgba(76, 175, 80, 0.3);
+  background-color: rgba(76, 175, 80, 0.1);
+}
+.form-container .form-message.error {
+  color: #F44336;
+  border-color: rgba(244, 67, 54, 0.3);
+  background-color: rgba(244, 67, 54, 0.1);
 }
 .form-container .g-recaptcha {
+  display: flex;
   justify-content: center;
   align-items: center;
-  display: flex;
+  margin: 1rem 0;
+}
+.form-container .g-recaptcha > div {
+  margin: 0 auto;
+}
+.form-container .fa-spinner {
+  margin-right: 8px;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 @keyframes fadeInUp {
   from {
@@ -982,9 +975,55 @@
   }
   .form-container .contact-container {
     padding: 1.5rem;
+    margin: 5rem auto 2rem auto;
   }
   .form-container .form-header h1 {
     font-size: 1.7rem;
+  }
+  .form-container .form-group input, .form-container .form-group select, .form-container .form-group textarea {
+    padding: 0.7rem 0.9rem;
+  }
+  .form-container .form-group input {
+    padding: 0.7rem 0.9rem 0.7rem 2.2rem;
+  }
+  .form-container #submitBtn {
+    padding: 0.7rem;
+    font-size: 0.9rem;
+  }
+}
+@media (max-width: 480px) {
+  .form-container .contact-container {
+    padding: 1rem;
+    margin: 4rem auto 1rem auto;
+  }
+  .form-container .form-header {
+    margin-bottom: 1.5rem;
+  }
+  .form-container .form-header h1 {
+    font-size: 1.5rem;
+  }
+  .form-container .form-header p {
+    font-size: 0.85rem;
+  }
+  .form-container .contact-form {
+    gap: 1rem;
+  }
+  .form-container .form-group label {
+    font-size: 0.8rem;
+  }
+  .form-container .form-group input, .form-container .form-group select, .form-container .form-group textarea {
+    font-size: 0.9rem;
+    padding: 0.6rem 0.8rem;
+  }
+  .form-container .form-group input {
+    padding: 0.6rem 0.8rem 0.6rem 2rem;
+  }
+  .form-container .form-group .error-message {
+    font-size: 0.7rem;
+  }
+  .form-container #submitBtn {
+    font-size: 0.85rem;
+    padding: 0.6rem;
   }
 }
 
