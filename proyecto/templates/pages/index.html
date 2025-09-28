@@ -19,7 +19,7 @@ Ingeniería Web - Recursos y Desarrollo
                 <ul class="nav-links">
                     <li><a href="#inicio" class="nav-link">Inicio</a></li>
                     <li><a href="#actividades" class="nav-link">Actividades</a></li>
-                    <li><a href="#contacto" class="nav-link">Contacto</a></li>
+                    <li><a href="#contacto" class="nav-link">Contactos</a></li>
                 </ul>
             </nav>
         </div>
@@ -68,7 +68,7 @@ Ingeniería Web - Recursos y Desarrollo
                     </div>
 
                     <div class="activity-card">
-                        <a href="/frontend/views/fyq.html" class="card-link">
+                        <a href="{% url 'faq' %}" class="card-link">
                             <div class="card-front">
                                 <i class="fas fa-circle-question card-icon"></i>
                                 <h3>FAQ</h3>
@@ -81,7 +81,7 @@ Ingeniería Web - Recursos y Desarrollo
                     </div>
 
                     <div class="activity-card">
-                        <a href="/frontend/views/open.html" class="card-link">
+                        <a href="{% url 'open' %}" class="card-link">
                             <div class="card-front">
                                 <i class="fas fa-music card-icon"></i>
                                 <h3>Música</h3>
@@ -94,7 +94,6 @@ Ingeniería Web - Recursos y Desarrollo
                     </div>
 
                     <!-- Añadir más tarjetas -->
-
 
                     <div class="activity-card coming-soon">
                         <div class="card-front">

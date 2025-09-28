@@ -161,6 +161,9 @@
             .menu-toggle {
                 display: block;
                 z-index: 1001;
+                &.active i::before {
+                    content: "\f00d"; // Icono de cerrar
+                }
             }
         }
 
@@ -171,6 +174,16 @@
         .faq-question {
             font-size: 1rem;
             padding: 1rem 0;
+        }
+
+        .footer {
+            padding: 1.5rem 0;
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 1.5rem;
+            }
         }
     }
 }

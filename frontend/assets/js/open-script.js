@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     title: "Clean Code",
                     summary: "Un libro fundamental sobre principios de programación limpia.",
                     description: "Robert C. Martin nos enseña cómo escribir código limpio, mantenible y eficiente. Un must-read para cualquier desarrollador.",
-                    image: "https://via.placeholder.com/300x200?text=Clean+Code",
+                    image: "https://elpythonista.com/wp-content/uploads/2020/10/Clean_Code-portada-1024x576.jpg",
                     keywords: ["Programación", "Buenas prácticas", "Desarrollo"],
                     category: "Tecnología"
                 },

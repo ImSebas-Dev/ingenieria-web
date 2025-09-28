@@ -163,7 +163,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Validar CAPTCHA
-    /*
     function validateCaptcha() {
         if (typeof grecaptcha === 'undefined') {
             console.warn('reCAPTCHA no está disponible');
@@ -183,7 +182,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         updateSubmitButton();
         return isValid;
-    }*/
+    }
     
     // Mostrar mensaje de éxito/error
     function showFormMessage(message, isSuccess = true) {
@@ -219,10 +218,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         
         // Validar CAPTCHA periódicamente
-        /*
         if (typeof grecaptcha !== 'undefined') {
             setInterval(validateCaptcha, 1000);
-        }*/
+        }
     }
     
     // Limpiar números de teléfono (quitar espacios y guiones)

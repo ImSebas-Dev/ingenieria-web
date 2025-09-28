@@ -367,6 +367,9 @@
             .menu-toggle {
                 display: block;
                 z-index: 1001;
+                &.active i::before {
+                    content: "\f00d"; // Icono de cerrar
+                }
             }
         }
 
@@ -387,6 +390,16 @@
 
             .section-title {
                 font-size: 2rem;
+            }
+        }
+
+        .footer {
+            padding: 1.5rem 0;
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 1.5rem;
             }
         }
     }

@@ -1,0 +1,55 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+
+{% block title %}
+Ingeniería Web - Preguntas Frecuentes
+{% endblock %}
+
+{% block content %}
+<div class="fyq-container">
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">Ingeniería Web</a>
+
+                <button class="menu-toggle" aria-label="Abrir menú">
+                    <i class="fas fa-bars"></i>
+                </button>
+
+                <ul class="nav-links">
+                    <li><a href="{% url 'index' %}" class="nav-link">Volver</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="faq-container">
+        <h1>Preguntas Frecuentes</h1>
+        <p>Encuentra respuestas a las preguntas más comunes sobre mis servicios y experiencia.</p>
+
+        <div class="faq-list">
+            <!-- Las preguntas se cargarán dinámicamente desde el CMS -->
+            <div class="faq-loading">Cargando preguntas frecuentes...</div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2025 Sebastián López. Todos los derechos reservados.</p>
+                <div class="social-links-index">
+                    <a href="https://www.linkedin.com/in/sebastian-lopez-a168a3279/" aria-label="LinkedIn"><i
+                            class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/ImSebas-Dev" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="mailto:lopezsebastian.dev@gmail.com" aria-label="Correo electrónico"><i
+                            class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'js/faq-script.js' %}"></script>
+{% endblock %}

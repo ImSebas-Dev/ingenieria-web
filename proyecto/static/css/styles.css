@@ -309,6 +309,9 @@
     display: block;
     z-index: 1001;
   }
+  .page-wrapper .header .menu-toggle.active i::before {
+    content: "\f00d";
+  }
   .page-wrapper .hero-section {
     padding: 6rem 0 3rem;
   }
@@ -323,6 +326,14 @@
   }
   .page-wrapper .activities-section .section-title {
     font-size: 2rem;
+  }
+  .page-wrapper .footer {
+    padding: 1.5rem 0;
+  }
+  .page-wrapper .footer .footer-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
   }
 }
 
@@ -973,6 +984,9 @@
     display: block;
     z-index: 1001;
   }
+  .form-container .header .menu-toggle.active i::before {
+    content: "\f00d";
+  }
   .form-container .contact-container {
     padding: 1.5rem;
     margin: 5rem auto 2rem auto;
@@ -989,6 +1003,14 @@
   .form-container #submitBtn {
     padding: 0.7rem;
     font-size: 0.9rem;
+  }
+  .form-container .footer {
+    padding: 1.5rem 0;
+  }
+  .form-container .footer .footer-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
   }
 }
 @media (max-width: 480px) {
@@ -1166,12 +1188,23 @@
     display: block;
     z-index: 1001;
   }
+  .fyq-container .header .menu-toggle.active i::before {
+    content: "\f00d";
+  }
   .fyq-container .faq-container {
     padding: 1rem;
   }
   .fyq-container .faq-question {
     font-size: 1rem;
     padding: 1rem 0;
+  }
+  .fyq-container .footer {
+    padding: 1.5rem 0;
+  }
+  .fyq-container .footer .footer-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
   }
 }
 
@@ -1290,46 +1323,42 @@
   overflow: hidden;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
   transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-  height: 300px;
+  min-height: 300px;
   position: relative;
   perspective: 1000px;
 }
-.open-container-main .open-container .grid-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
-.open-container-main .open-container .item-image {
+.open-container-main .open-container .grid-item .item-image {
   width: 100%;
   height: 200px;
   object-fit: cover;
 }
-.open-container-main .open-container .item-content {
+.open-container-main .open-container .grid-item .item-content {
   padding: 1.5rem;
 }
-.open-container-main .open-container .item-title {
+.open-container-main .open-container .grid-item .item-title {
   font-size: 1.25rem;
   margin: 0 0 0.5rem 0;
   color: #f9f8fa;
 }
-.open-container-main .open-container .item-summary {
+.open-container-main .open-container .grid-item .item-summary {
   color: #e6e6e6;
   margin: 0 0 1rem 0;
   line-height: 1.5;
 }
-.open-container-main .open-container .item-keywords {
+.open-container-main .open-container .grid-item .item-keywords {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
   margin: 1rem 0;
 }
-.open-container-main .open-container .keyword {
+.open-container-main .open-container .grid-item .keyword {
   background: #25163e;
   padding: 0.25rem 0.5rem;
   border-radius: 4px;
   font-size: 0.8rem;
   color: #b845ff;
 }
-.open-container-main .open-container .item-link {
+.open-container-main .open-container .grid-item .item-link {
   display: inline-block;
   margin-top: 1rem;
   padding: 0.5rem 1rem;
@@ -1339,8 +1368,12 @@
   border-radius: 4px;
   transition: background 0.3s ease;
 }
-.open-container-main .open-container .item-link:hover {
+.open-container-main .open-container .grid-item .item-link:hover {
   transform: translateY(-2px);
+}
+.open-container-main .open-container .grid-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 .open-container-main .open-container .loading {
   text-align: center;
@@ -1354,40 +1387,100 @@
   grid-column: 1/-1;
   color: #666;
 }
+@media (max-width: 1200px) {
+  .open-container-main .open-container .grid-container {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  }
+}
 @media (max-width: 768px) {
+  .open-container-main .header {
+    padding: 0.75rem 1rem;
+  }
+  .open-container-main .header .navbar {
+    position: relative;
+  }
   .open-container-main .header .nav-links {
     position: fixed;
-    top: 70px;
+    top: 0;
     left: -100%;
     width: 100%;
-    height: calc(100vh - 70px);
-    background: rgba(34, 26, 46, 0.95);
+    height: 100vh;
+    background: rgba(34, 26, 46, 0.98);
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 2rem;
     transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    backdrop-filter: blur(10px);
   }
   .open-container-main .header .nav-links.active {
     left: 0;
   }
   .open-container-main .header .menu-toggle {
     display: block;
-    z-index: 1001;
+    z-index: 10001;
+  }
+  .open-container-main .header .menu-toggle.active i::before {
+    content: "\f00d";
   }
   .open-container-main .open-container {
-    padding: 1rem;
+    margin: 4rem auto 2rem;
+    padding: 0 1rem;
   }
-  .open-container-main .grid-container {
-    grid-template-columns: 1fr;
+  .open-container-main .open-container .filters {
+    flex-direction: column;
+    gap: 0.75rem;
+    margin: 1.5rem 0;
+  }
+  .open-container-main .open-container .filters input,
+  .open-container-main .open-container .filters select {
+    width: 100%;
+    min-width: auto;
+  }
+  .open-container-main .open-container .grid-container {
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  .open-container-main .open-container .grid-item {
+    min-height: 280px;
+  }
+  .open-container-main .footer {
+    padding: 1.5rem 0;
+  }
+  .open-container-main .footer .footer-content {
+    flex-direction: column;
+    text-align: center;
     gap: 1.5rem;
   }
-  .open-container-main .grid-container .filters {
-    flex-direction: column;
+}
+@media (max-width: 480px) {
+  .open-container-main .header {
+    padding: 0.5rem 0.75rem;
   }
-  .open-container-main .grid-container .filters input,
-  .open-container-main .grid-container .filters select {
-    width: 100%;
+  .open-container-main .open-container {
+    margin: 3.5rem auto 1.5rem;
+    padding: 0 0.75rem;
+  }
+  .open-container-main .open-container h1 {
+    margin-bottom: 0.5rem;
+  }
+  .open-container-main .open-container p {
+    margin-bottom: 1.5rem;
+  }
+  .open-container-main .open-container .grid-item {
+    min-height: 250px;
+  }
+  .open-container-main .open-container .item-content {
+    padding: 1rem;
+  }
+}
+@media (max-height: 500px) and (orientation: landscape) {
+  .open-container-main .header .nav-links {
+    padding: 2rem 0;
+    gap: 1.5rem;
+  }
+  .open-container-main .open-container {
+    margin: 3rem auto 1rem;
   }
 }
 
