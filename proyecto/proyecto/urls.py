@@ -22,4 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name="index"),
     path('contactame/', include('apps.contactame.urls')),
+    path('cv/', include('apps.portfolio.urls')),
 ]
