@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 <div class="item-keywords">
                     ${item.keywords.map(keyword => `<span class="keyword">${keyword}</span>`).join('')}
                 </div>
-                <a href="/api/canciones/${item.slug}/" class="item-link">Ver detalles</a>
+                <a href="${item.slug}" class="item-link">Ver detalles</a>
             </div>
         `;
             gridContainer.appendChild(gridItem);
