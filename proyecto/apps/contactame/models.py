@@ -11,7 +11,7 @@ class Contactame(models.Model):
 
     nombre = models.CharField(max_length=100, verbose_name="Nombre completo")
     email = models.EmailField(verbose_name="Correo electrónico")
-    telefono = models.TextField(max_length=20, blank=True, null=True, verbose_name="Teléfono")
+    phone = models.TextField(max_length=20, blank=True, null=True, verbose_name="Teléfono")
     asunto = models.CharField(max_length=20, choices=ASUNTO_CHOICES, verbose_name="Asunto")
     mensaje = models.TextField(verbose_name="Mensaje")
     fecha_envio = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de envío")
