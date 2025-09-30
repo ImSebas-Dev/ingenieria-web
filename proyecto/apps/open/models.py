@@ -24,6 +24,10 @@ class Cancion(models.Model):
     slug = models.CharField(max_length=220, unique=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        verbose_name = "Canción"
+        verbose_name_plural = "Canciones"
+
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.title)[:220]

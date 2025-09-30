@@ -36,7 +36,7 @@ class ContactameForm(forms.ModelForm):
 
     phone = forms.CharField(
         max_length=20,
-        required=False,
+        required=True,
         validators=[RegexValidator(
             regex=r'^\d{10}$',
             message='Formato de teléfono inválido. Use 10 dígitos sin espacios ni guiones.'
@@ -73,10 +73,3 @@ class ContactameForm(forms.ModelForm):
     class Meta:
         model = Contactame
         fields = ['nombre', 'email', 'phone', 'asunto', 'mensaje']
-
-    def clean_phone(self):
-        phone = self.cleaned_data.get('phone')
-        if phone:
-            # Eliminar espacios y guiones
-            phone = phone.replace(' ', '').replace('-', '')
-        return phone
